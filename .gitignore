@@ -1,0 +1,34 @@
+# Node
+node_modules/
+**/node_modules/
+.env
+.env.*
+!.env.example
+npm-debug.log*
+
+# Frontend build
+Frontend/dist/
+Frontend/build/
+Frontend/.vite/
+
+# Backend build
+Backend/dist/
+Backend/.env
+
+# Python
+AI-services/.venv/
+AI-services/__pycache__/
+AI-services/**/*.pyc
+AI-services/.pytest_cache/
+AI-services/.mypy_cache/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Prisma
+Backend/prisma/*.db
+Backend/prisma/*.db-journal

@@ -1,0 +1,12 @@
+{
+  "name": "sphereai",
+  "private": true,
+  "scripts": {
+    "db": "docker compose up -d db",
+    "dev": "docker compose up -d db && concurrently --names frontend,backend,python --prefix-colors cyan,green,magenta \"cd Frontend && npm run dev -- --host 0.0.0.0\" \"cd Backend && npx prisma migrate deploy && npm run dev\" \"cd AI-services && source .venv/bin/activate && uvicorn app.main:app --host 0.0.0.0 --port 8001\"",
+    "down": "docker compose down"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.1"
+  }
+}

@@ -1,0 +1,16 @@
+services:
+  db:
+    image: postgres:15
+    container_name: sphereai-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: sphereai
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5433:5432"
+    volumes:
+      - sphereai_db_data:/var/lib/postgresql/data
+
+volumes:
+  sphereai_db_data:

@@ -1,0 +1,40 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id              String   @id @default(cuid())
+  email           String   @unique
+  name            String?
+  cognitoId       String?  @unique
+  profileImageUrl String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model Document {
+  id                   String    @id @default(cuid())
+  userId               String
+  fileName             String
+  originalFileName     String
+  mimeType             String
+  fileSize             Int
+  s3Key                String    @unique
+  bucketName           String?
+  processingStatus     String    @default("queued")
+  processor            String?
+  extractedText        String?
+  processingError      String?
+  processingStartedAt  DateTime?
+  processedAt          DateTime?
+  uploadedAt           DateTime  @default(now())
+  createdAt            DateTime  @default(now())
+  updatedAt            DateTime  @updatedAt
+
+  @@index([userId])
+}
